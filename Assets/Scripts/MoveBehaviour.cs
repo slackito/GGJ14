@@ -54,6 +54,27 @@ public class MoveBehaviour : MonoBehaviour {
 				}
 			}
 		}
+		child = this.gameObject.transform.Find ("render_player_hack2");
+		if (child != null)
+		{
+			if (Mathf.Abs (velocity.x) > 0.05f) {
+				if (velocity.x < 0) {
+					Vector3 s = child.localScale;
+					s.x = -0.45f;
+					child.localScale = s;
+					Vector3 t = child.localPosition;
+					t.x = -0.75f;
+					child.localPosition = t;
+				} else if (velocity.x > 0) {
+					Vector3 s = child.localScale;
+					s.x = 0.45f;
+					child.localScale = s;
+					Vector3 t = child.localPosition;
+					t.x = 0.75f;
+					child.localPosition = t;
+				}
+			}
+		}
 	}
 	void  OnCollisionEnter2D(Collision2D collision)
 	{
