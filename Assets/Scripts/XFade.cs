@@ -56,7 +56,7 @@ public class XFade : MonoBehaviour {
 */
 
 [RequireComponent(typeof(AudioSource))]
-public class XFade : MonoBehaviour {
+public class XFade : MonoBehaviour, IFadeable {
 	AudioSource[] darkAudioSources; //= new AudioSource[2];
 	AudioSource[] lightAudioSources; //= new AudioSource[2];
 	AudioSource[] neutralAudioSources; //= new AudioSource[2];
@@ -106,7 +106,7 @@ public class XFade : MonoBehaviour {
 
 	}
 
-	public void setDarkLight(float balance = 0.0f) {
+	public void SetFadeState(float balance) {
 		foreach (AudioSource das in darkAudioSources) {
 			das.volume = 1.0f - balance;
 		}
