@@ -6,6 +6,7 @@ public class WorldSwitcher : MonoBehaviour {
 	public GameObject whitePlayer;
 	public GameObject blackPlayer;
 	public float fadeDuration = 1.0f;
+	public CameraBehaviour camera;
 
 	List<IFadeable> fadeableObjects;
 
@@ -21,6 +22,7 @@ public class WorldSwitcher : MonoBehaviour {
 	void SwitchToWhite() {
 		blackPlayer.GetComponent<MoveBehaviour> ().movementEnabled = false;
 		whitePlayer.GetComponent<MoveBehaviour> ().movementEnabled = true;
+		camera.target = whitePlayer;
 
 		worldColor = WorldColor.WHITE;
 		fadeBegin = Time.time;
@@ -29,6 +31,7 @@ public class WorldSwitcher : MonoBehaviour {
 	void SwitchToBlack() {
 		blackPlayer.GetComponent<MoveBehaviour> ().movementEnabled = true;
 		whitePlayer.GetComponent<MoveBehaviour> ().movementEnabled = false;
+		camera.target = blackPlayer;
 
 		worldColor = WorldColor.BLACK;
 		fadeBegin = Time.time;
