@@ -36,6 +36,7 @@ public class WorldSwitcher : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		SwitchToBlack ();
 		fadeableObjects = new List<IFadeable> ();
 		foreach(var x in Object.FindObjectsOfType<MonoBehaviour> ())
 		{
