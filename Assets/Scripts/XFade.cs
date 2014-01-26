@@ -75,6 +75,7 @@ public class XFade : MonoBehaviour, IFadeable {
 			AudioSource asource = gameObject.AddComponent("AudioSource") as AudioSource;
 			darkAudioSources[i] = asource;
 			darkAudioSources[i].clip = darkAudioClips[i];
+			darkAudioSources[i].loop = true;
 			darkAudioSources[i].Play();
 		}
 		// Light sources
@@ -83,6 +84,7 @@ public class XFade : MonoBehaviour, IFadeable {
 			AudioSource asource = gameObject.AddComponent("AudioSource") as AudioSource;
 			lightAudioSources[i] = asource;
 			lightAudioSources[i].clip = lightAudioClips[i];
+			lightAudioSources[i].loop = true;
 			lightAudioSources[i].volume = 0.0f;
 			lightAudioSources[i].Play();
 		}
@@ -92,6 +94,7 @@ public class XFade : MonoBehaviour, IFadeable {
 			AudioSource asource = gameObject.AddComponent("AudioSource") as AudioSource;
 			neutralAudioSources[i] = asource;
 			neutralAudioSources[i].clip = neutralAudioClips[i];
+			neutralAudioSources[i].loop = true;
 			neutralAudioSources[i].Play();
 		}
 		/*audiosources = this.GetComponents<AudioSource>();

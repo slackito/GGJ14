@@ -19,11 +19,17 @@ public class WorldSwitcher : MonoBehaviour {
 	public float fadeState=0.0f;
 
 	void SwitchToWhite() {
+		blackPlayer.GetComponent<MoveBehaviour> ().movementEnabled = false;
+		whitePlayer.GetComponent<MoveBehaviour> ().movementEnabled = true;
+
 		worldColor = WorldColor.WHITE;
 		fadeBegin = Time.time;
 	}
 
 	void SwitchToBlack() {
+		blackPlayer.GetComponent<MoveBehaviour> ().movementEnabled = true;
+		whitePlayer.GetComponent<MoveBehaviour> ().movementEnabled = false;
+
 		worldColor = WorldColor.BLACK;
 		fadeBegin = Time.time;
 	}
