@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TextureSwitcher : MonoBehaviour, WorldSwitcher {
+public class TextureSwitcher : MonoBehaviour, IFadeable {
 
 	public Texture lightTexture;
 	public Texture darkTexture;
@@ -18,7 +18,7 @@ public class TextureSwitcher : MonoBehaviour, WorldSwitcher {
 		vertices [0] = new Vector3 (0.0f, 0.0f, 0.0f);
 		uv [0] = new Vector2 (0.0f, 0.0f);
 		normals [0] = Vector3.back;
-		
+
 		vertices [1] = new Vector3 (0.0f, size.y, 0.0f);
 		uv [1] = new Vector2 (0.0f, 1.0f);
 		normals [1] = Vector3.back;
@@ -52,11 +52,6 @@ public class TextureSwitcher : MonoBehaviour, WorldSwitcher {
 
 	// Use this for initialization
 	void Start () {
-		//var mesh = MakeQuad ();
-		var quad = GetComponent<MeshFilter> ();
-		//quad.mesh = mesh;
-
-		//var renderer = this.gameObject.AddComponent<MeshRenderer> ();
 		var renderer = GetComponent<MeshRenderer> ();
 
 		var spriteShader = Shader.Find ("Custom/SpriteShader");
@@ -72,20 +67,14 @@ public class TextureSwitcher : MonoBehaviour, WorldSwitcher {
 	
 	// Update is called once per frame
 	void Update () {
+	}
 
-		float t = 0.5f * Mathf.Sin (3.0f*Time.time) + 0.5f;
+	public void SetFadeState(float value) {
 		shaderParameters = new MaterialPropertyBlock ();
 		shaderParameters.AddTexture ("_MainTex", lightTexture);
 		shaderParameters.AddTexture ("_DarkTex", darkTexture);
-		shaderParameters.AddFloat ("_FadeState", t);
+		shaderParameters.AddFloat ("_FadeState", value);
 		GetComponent<Renderer>().SetPropertyBlock (shaderParameters);
-
-	}
-
-	public void SwitchToLight() {
-	}
-
-	public void SwitchToDark() {
 	}
 
 }
